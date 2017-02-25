@@ -29,4 +29,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  def generate_jwt(exp=30.minutes.from_now.to_i)
+    JwtAuth.generate_jwt({exp: exp, user_id: self.id})
+  end
 end
