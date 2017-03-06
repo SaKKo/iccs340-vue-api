@@ -10,4 +10,13 @@
 #
 
 class Post < ApplicationRecord
+
+  def as_json(options={})
+    {
+      id: self.id,
+      name: self.name,
+      content: self.content
+    }
+  end
+
 end

@@ -24,6 +24,7 @@
 #  updated_at             :datetime         not null
 #
 
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -33,4 +34,19 @@ class User < ApplicationRecord
   def generate_jwt(exp=30.minutes.from_now.to_i)
     JwtAuth.generate_jwt({exp: exp, user_id: self.id})
   end
+
+  def token
+    SecureRandom.urlsafe_base64(60)
+  end
 end
+
+
+
+
+
+
+
+
+
+
+
